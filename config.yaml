@@ -1,0 +1,13 @@
+base_url: http://emmacan.com
+cdn_url: http://emmacan.com
+content_width: 960
+copyright: { starting_year: 2012, owner: David Brunow }
+description: Emma Can
+google_analytics_account: UA-34447905-1
+hidden_files: true
+jquery_version: 1.8.3
+kramdown: { entity_output: symbolic }
+remove_obsolete: true
+search_sites: emmacan.com
+title: Emma Can
+visible_posts: 5

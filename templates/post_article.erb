@@ -1,0 +1,114 @@
+<%
+require 'time'
+
+fmt = post_format(@post)
+published = Time.parse(@post.metadata[:published].to_s)
+has_header = post_format_has_title? fmt
+is_link = fmt == 'link'
+post_title = markdown_inline(@post.metadata[:title])
+%>
+<article class="post format-<%= fmt %>">
+<% if has_header %>
+<header class="post-header">
+<h1 class="post-title"><a href="<%= is_link ? @post.metadata[:link] : post_url(@post) %>"><%= post_title + (is_link ? '&nbsp;&rarr;' : '') %></a></h1>
+</header>
+<% end %>
+<div class="post-content">
+<%= @content || yield %>
+</div>
+<footer class="post-footer">
+<p class="post-meta">Emma could when she was <time<% if page_url(@item) == '/' %> class="timesince"<% end %> datetime="<%= published.xmlschema %>"><%= published.strftime('on %A, %B %e, %Y at %l:%M %p').gsub(/ +/, ' ') %></time><% if @post != @item && (is_link || !has_header) %> &middot; <a href="<%= post_url(@post) %>" title="Permanent link to this post">Permalink</a><% end %></p>
+</footer>
+<script>
+
+var numberOfDivs = document.getElementsByTagName("DIV").length;
+
+for(var x = 0; x < numberOfDivs; x++) {
+	(function (x) {
+	var thisDiv = document.getElementsByTagName("DIV")[x];
+	
+	if(thisDiv.className == "post-content") {
+		var contentDiv = thisDiv;
+		var oldImage = thisDiv.getElementsByTagName("IMG")[0];
+
+		if(oldImage) {		
+			var imageDiv = document.createElement("DIV");
+			imageDiv.style.position = "relative";
+			imageDiv.className = "post-image";
+			//imageDiv.style.width = "125%";
+			contentDiv.parentNode.insertBefore(imageDiv, contentDiv);
+
+			var newImage = document.createElement("IMG");
+			newImage.className = oldImage.className;
+			newImage.src = oldImage.src;
+			newImage.alt = oldImage.alt;
+			newImage.title = oldImage.title;
+
+			oldImage.parentNode.removeChild(oldImage);
+			imageDiv.appendChild(newImage);
+			imageDiv.appendChild(contentDiv);
+
+			contentDiv.style.display = "none";
+
+			if(imageDiv.addEventListener) {
+				imageDiv.addEventListener("mouseover", function (event) {
+					contentDiv.style.display = "block";
+				}, false);
+				imageDiv.addEventListener("mouseout", function (event) {
+					contentDiv.style.display = "none";
+				}, false);
+			} else {
+				imageDiv.attachEvent("onmouseover", function (event) {
+					contentDiv.style.display = "block";
+				});
+				imageDiv.attachEvent("onmouseout", function (event) {
+					contentDiv.style.display = "none";
+				});
+			}
+		} else {
+			var thisVideo = thisDiv.getElementsByTagName("VIDEO")[0];
+			
+			if(thisVideo) {
+				var videoDiv = document.createElement("DIV");
+				videoDiv.style.position = "relative";
+				contentDiv.parentNode.insertBefore(videoDiv, contentDiv);
+				
+				var newVideo = document.createElement("VIDEO");
+				newVideo.src = thisVideo.src;
+				newVideo.controls = thisVideo.controls;
+				//newVideo.height = thisVideo.height;
+				//if(thisVideo.height < thisVideo.width) {
+					//newVideo.style.width = "100%";
+					//} else {
+					newVideo.height = thisVideo.height;
+					newVideo.width = thisVideo.width;
+					//}
+				newVideo.innerHTML = thisVideo.innerHTML;
+				
+				thisVideo.parentNode.removeChild(thisVideo);
+				
+				if(thisVideo.canPlayType) {
+					if(thisVideo.canPlayType( 'video/mp4;' )) {
+						videoDiv.appendChild(newVideo);
+					} else {
+						var thisSpan = document.createElement("SPAN");
+					
+						thisSpan.innerHTML = thisVideo.innerHTML;
+						videoDiv.appendChild(thisSpan);
+					}
+				} else {
+						var thisSpan = document.createElement("SPAN");
+					
+						thisSpan.innerHTML = thisVideo.innerHTML;
+						videoDiv.appendChild(thisSpan);
+					}
+			}
+		}
+	}
+	}(x));
+}
+
+
+
+</script>
+</article>

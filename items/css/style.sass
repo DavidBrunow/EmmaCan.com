@@ -1,0 +1,352 @@
+$page_width:    80%
+$content_width: 70%
+$gutter_width:  10%
+$sidebar_width: 0px
+
+$serif:         Georgia, serif
+$sans_serif:    Helvetica, Verdana, sans-serif
+$monospace:     Courier, monospace
+
+$white:         #ffffff
+$black:         #000000
+$dark:          #EDA946
+$light:         #ffffff
+$accent:        #FACC42
+$gray36:        #5c5c5c
+$gray80:        #cccccc
+$gray90:        #e5e5e5
+
+body
+  background-color: $light
+  color: $black
+  font-family: $serif
+  font-size: 125%
+  margin: 0
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) 
+    font-size: 3.0em
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px)
+    font-size: 3.0em
+
+a
+  color: $dark
+  text-decoration: none
+  &:hover
+    text-decoration: none
+    color: $accent
+
+p a
+  text-decoration: underline
+
+h1, h2, h3, h4, h5, h6
+  font-weight: bold
+
+h1
+  font-family: $sans_serif
+  font-size: 2.2em
+  margin: .7em 0
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) 
+    font-size: 1.3em
+    margin: .2em 0
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px)
+    font-size: 1.3em
+    margin: .2em 0
+
+h2, h3, h4, h5, h6
+  font-family: $sans_serif
+  font-size: 1.2em
+  margin: 2em 0 1em
+  
+h3
+  font-size: 1.1em
+
+p, li, dt, dd
+  line-height: 1.5em
+  code, kbd, samp
+    font-size: 90%
+
+li
+  margin: 1em 0
+
+blockquote
+  border-left: 10px solid $gray80
+  margin: 1em 0
+  padding: 0 40px 0 30px
+
+code, kbd, samp, pre
+  background-color: $white
+  border: 1px solid $gray80
+  color: $black
+  font-family: $monospace
+  -webkit-border-radius: 3px
+  -moz-border-radius: 3px
+  border-radius: 3px
+
+code, kbd, samp
+  padding: .25em 4px
+
+pre
+  font-size: .8em
+  overflow: hidden
+  padding: .5em 10px
+  code
+    background-color: transparent
+    border: 0
+    padding: 0
+
+sup
+  line-height: normal
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+  border: 0
+  font-family: $sans_serif
+  font-size: .8em
+  margin: 1em 0
+  th, td
+    border: 1px solid $gray80
+    padding: .25em 20px
+  th
+    background-color: $gray90
+  td
+    background-color: $white
+
+img
+  // Explicitly hide borders to workaround behavior in some versions of
+  // Internet Explorer.
+  border: 0
+  &.align-none
+    height: auto
+    max-width: 100%
+  &.align-full
+    height: auto
+    width: 100%
+  &.align-left
+    float: left
+    margin: 6px 20px 6px 0
+  &.align-right
+    float: right
+    margin: 6px 0 6px 20px
+  &.align-center
+    display: block
+    margin: 0 auto
+
+iframe
+  border: 0
+
+input
+  font-family: $sans_serif
+  font-size: 1em
+
+// Add 1px padding to `#banner` element top in order to prevent Firefox quirk
+// which adds extra space at top of page. Add padding to bottom and other
+// elements for symmetry.
+#banner, #main, #addendum
+  min-width: $page_width
+  padding: 1px $gutter_width 1px
+  text-align: center
+
+#banner, #addendum
+  background-color: $dark
+  //opacity: .8
+  font-family: $sans_serif
+  
+.sleeve
+  margin: 0 auto
+  text-align: left
+  width: $page_width
+
+#banner
+  z-index: 10
+  box-shadow: 0px 2px 2px $black
+  position: fixed
+  a
+    color: $light
+    border-bottom: 0
+    margin: -3px -6px
+    padding: 3px 6px
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+
+#nameplate, #toc
+  margin: 0 0
+
+#nameplate
+  color: $light
+  float: left
+  h1, a
+    display: inline-block
+    margin: 0px
+    padding-left: 15px
+    font-weight: 200
+
+#toc
+  font-size: 1.0em
+  padding-top: 0.5em
+  vertical-align: middle
+  position: absolute
+  right: 0px
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) 
+    font-size: 3.0em
+    width: 30vw
+    margin-top: 2em
+    display: none
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px)
+    font-size: 3.0em
+    width: 30vw
+    margin-top: 2em
+    display: none
+
+#title, #description
+  display: inline
+
+#title
+  font-size: 1em
+  font-weight: normal
+  margin: 0 12px 0 0
+
+#description
+  font-family: $serif
+  font-size: .8em
+  font-style: italic
+  margin: 0
+
+#menu
+  margin: 0 -9px
+  padding-left: 0
+
+.menu-item
+  float: left
+  line-height: normal
+  list-style-type: none
+  margin: 0 1.0em
+  padding: 0 9px
+  position: relative
+  white-space: nowrap
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px) 
+    line-height: 2em
+    list-style-type: circle
+    position: relative
+    display: block
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px)
+    line-height: 2em
+    list-style-type: circle
+    position: relative
+    display: block
+    
+#main
+  background-color: $light
+  color: $black
+  a
+    color: $black
+  a:hover
+    color: $dark
+  hr
+    background-color: $gray80
+    border: 0
+    height: 1px
+    margin: 1em 0
+
+#content
+  float: left
+  width: $content_width
+
+.format-link .post-title
+  font-size: 1.2em
+  margin: 1em 0
+
+.format-aside
+  font-family: $sans_serif
+
+.format-quote blockquote
+  font-size: 1.5em
+  & + p
+    font-style: italic
+    margin-top: -1em
+    padding: 0 40px
+    text-align: right
+
+.archive-list
+  padding-left: 0
+
+.archive-item
+  list-style-type: none
+
+#sidebar
+  float: right
+  font-family: $sans_serif
+  margin: 2.5em 0
+  width: $sidebar_width
+  display: none
+
+.panel
+  font-size: .6em
+  margin: 3em 0
+  h1
+    font-size: 1.5em
+  ul
+    padding-left: 0
+  li
+    list-style-type: none
+
+#search
+  label
+    display: none
+  input
+    width: 100%
+
+#page, .post, .archive
+  margin: 4em 0
+
+#pagination, .footnotes, .post-meta, .archive-item time
+  font-family: $sans_serif
+
+#pagination
+  font-size: .8em
+
+.footnotes, .archive-item time
+  font-size: .7em
+
+.post-meta
+  margin: 2em 0
+
+#copyright, .post-meta
+  font-size: .6em
+
+#banner:after, #main:after
+  clear: both
+  content: " "
+  display: block
+  font-size: 0
+  height: 0
+  visibility: hidden
+  
+.post-title
+  font-weight: normal
+  font-size: 1.5em
+  margin: 0 0
+  
+.post-content 
+  opacity: .8
+  background-color: white
+  position: absolute
+  padding: 0 5%
+  left: 0px
+  bottom: 0px
+  width: 90%
+  @media only screen and (min-device-width: 320px) and (max-device-height: 568px)
+    display: none
+  @media only screen and (min-device-width: 320px) and (max-device-height: 480px)
+    display: none
+
+.post-image 
+  left: 0px
+  bottom: 0px
+  width: 100%
+
+.post-footer
+  margin-top: -15px
+  
+video
+  font-size: .8em

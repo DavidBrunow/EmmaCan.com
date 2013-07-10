@@ -1,0 +1,35 @@
+<aside id="sidebar">
+<section class="panel">
+<p>Emma Can</p>
+</section>
+<section class="panel">
+<p>You should follow me on <a href="https://twitter.com/emmabrunow">Twitter</a>.</p>
+</section>
+<section class="panel">
+<form id="search" action="https://duckduckgo.com/" method="get">
+<input type="hidden" name="sites" value="<%= @config[:search_sites] %>" />
+<label for="search-field">Search for:</label>
+<input type="text" name="q" id="search-field" placeholder="Search" />
+</form>
+</section>
+<%
+posts = sorted_posts.find_all { |item| post_format(item) == 'standard' }
+
+unless posts.empty?
+%>
+<section class="panel">
+<h1>Recent articles</h1>
+<ul>
+<%
+	posts[0..9].each do |item|
+%>
+<li><a href="<%= post_url(item) %>"><%= markdown_inline(item.metadata[:title]) %></a></li>
+<%
+	end
+%>
+</ul>
+</section>
+<%
+end
+%>
+</aside>
